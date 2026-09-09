@@ -7,18 +7,20 @@ Working examples for building AI applications on the Thinkube platform.
 
 ## Purpose
 
-This repository contains **one complete, working example**: an AI Research Lab Assistant that demonstrates the full Thinkube AI development lifecycle.
+This repository contains two examples. `research-assistant/` builds an AI Research Lab Assistant across four notebooks. `zebra-grpo/` fine-tunes a model on rewards a program can check, registers it, and serves it — the full loop from a base model to a served one.
 
 ## Structure
 
 ```
 thinkube-ai-examples/
-└── research-assistant/
+├── research-assistant/
     ├── 00-platform-validation.ipynb  # Validate platform services
     ├── 01-register-litellm.ipynb     # Register LLM models
     ├── 02-langchain-rag.ipynb        # RAG pipeline for paper search
-    ├── 03-multi-agent.ipynb          # Multi-agent coordination
-    └── 04-fine-tuning.ipynb          # Domain-specific fine-tuning
+    └── 03-multi-agent.ipynb          # Multi-agent coordination
+└── zebra-grpo/
+    ├── zebra_grpo.ipynb              # Fine-tune on verifiable rewards, register, serve
+    └── zebra_dataset.py
 ```
 
 ## The Application: AI Research Lab Assistant
