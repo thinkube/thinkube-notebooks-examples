@@ -12,7 +12,7 @@ This repository contains **one complete, working example**: an AI Research Lab A
 ## Structure
 
 ```
-thinkube-ai-examples/
+thinkube-notebooks-examples/
 └── research-assistant/
     ├── 00-platform-validation.ipynb  # Validate platform services
     ├── 01-register-litellm.ipynb     # Register LLM models

@@ -23,7 +23,7 @@ Models are stored in MLflow Model Registry and served via the LLM Gateway proxy.
 ## Repository Structure
 
 ```
-thinkube-ai-examples/
+thinkube-notebooks-examples/
 ├── examples/
 │   └── research-assistant/
 │       ├── 00-platform-validation.ipynb   # Validate platform services

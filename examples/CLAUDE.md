@@ -20,7 +20,7 @@ Models are stored in MLflow Model Registry and mounted at runtime.
 ## Notebook Structure
 
 ```
-thinkube-ai-examples/
+thinkube-notebooks-examples/
 ├── 00-platform-validation.ipynb   # Validate 7 platform services
 ├── 01-register-litellm.ipynb      # Register LLM & embeddings in LiteLLM
 └── research-assistant/
