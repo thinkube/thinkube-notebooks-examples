@@ -13,7 +13,7 @@ Two examples. `research-assistant/` builds an assistant over a corpus of researc
 thinkube-notebooks-examples/examples/
 ├── research-assistant/
 │   ├── 00-platform-validation.ipynb  # Check the platform services the notebooks use
-│   ├── 01-register-litellm.ipynb     # Load a chat model and an embedding model through the LLM Gateway
+│   ├── 01-load-models.ipynb          # Load a chat model and an embedding model through the LLM Gateway
 │   ├── 02-langchain-rag.ipynb        # Index arXiv papers in Qdrant and answer questions with sources
 │   └── 03-multi-agent.ipynb          # Two agents debate from the index; a judge decides
 └── zebra-grpo/
@@ -26,7 +26,7 @@ thinkube-notebooks-examples/examples/
 | Notebook | Kernel | Services |
 |---|---|---|
 | 00-platform-validation | `agent-dev` | LLM Gateway, Qdrant, Langfuse, Thinkube Experiments (MLflow), PostgreSQL, Valkey, NATS; a service that is not installed is skipped |
-| 01-register-litellm | `agent-dev` | LLM Gateway, through `tk-llm` |
+| 01-load-models | `agent-dev` | LLM Gateway, through `tk-llm` |
 | 02-langchain-rag | `agent-dev` | LLM Gateway, Qdrant, Langfuse, the arXiv API |
 | 03-multi-agent | `agent-dev` | LLM Gateway (a model with tool calling), Qdrant, Langfuse |
 | zebra-grpo | `fine-tuning`, one GPU with about 20 GB free | Thinkube Experiments, the LLM Gateway, Hugging Face for the benchmark dataset |

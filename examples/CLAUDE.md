@@ -8,7 +8,7 @@ Guidance for Claude Code when working with these notebooks.
 examples/
 ├── research-assistant/
 │   ├── 00-platform-validation.ipynb  # Checks LLM Gateway, Qdrant, Langfuse, MLflow, PostgreSQL, Valkey, NATS
-│   ├── 01-register-litellm.ipynb     # Loads a chat and an embedding model through the LLM Gateway (tk-llm)
+│   ├── 01-load-models.ipynb          # Loads a chat and an embedding model through the LLM Gateway (tk-llm)
 │   ├── 02-langchain-rag.ipynb        # arXiv corpus -> chunks -> embeddings -> Qdrant collection rl_reasoning_papers
 │   └── 03-multi-agent.ipynb          # AG2 debate citing the Qdrant index; a judge decides
 └── zebra-grpo/
