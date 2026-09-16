@@ -1,77 +1,39 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working with these notebooks.
 
-## Mission
-
-Complete the **AI Research Lab Assistant** notebooks with working code. Each notebook should be fully executable in JupyterHub with real platform services.
-
-## Platform: 100% Self-Contained
-
-All AI capabilities run locally on Thinkube - no external API calls:
-
-| Capability | Service | Model |
-|------------|---------|-------|
-| Chat/Completion | `tkt-tensorrt-llm` via LiteLLM | GPT-OSS 20B, Llama, Qwen, Phi |
-| Embeddings | `tkt-text-embeddings` via LiteLLM | nomic-embed-text-v1.5 |
-
-Models are stored in MLflow Model Registry and mounted at runtime.
-
-## Notebook Structure
+## What is here
 
 ```
-thinkube-notebooks-examples/
-├── 00-platform-validation.ipynb   # Validate 7 platform services
-├── 01-register-litellm.ipynb      # Register LLM & embeddings in LiteLLM
-└── research-assistant/
-    ├── 02-langchain-rag.ipynb     # RAG pipeline for papers
-    ├── 03-multi-agent.ipynb       # CrewAI multi-agent system
-    └── 04-fine-tuning.ipynb       # Unsloth fine-tuning
+examples/
+├── research-assistant/
+│   ├── 00-platform-validation.ipynb  # Checks LLM Gateway, Qdrant, Langfuse, MLflow, PostgreSQL, Valkey, NATS
+│   ├── 01-register-litellm.ipynb     # Loads a chat and an embedding model through the LLM Gateway (tk-llm)
+│   ├── 02-langchain-rag.ipynb        # arXiv corpus -> chunks -> embeddings -> Qdrant collection rl_reasoning_papers
+│   └── 03-multi-agent.ipynb          # AG2 debate citing the Qdrant index; a judge decides
+└── zebra-grpo/
+    ├── zebra_grpo.ipynb              # GRPO fine-tune of unsloth/Qwen3.5-4B, registered in MLflow, served via the gateway
+    └── zebra_dataset.py
 ```
 
-## Platform Services
+Kernels: `agent-dev` for the research assistant, `fine-tuning` for zebra-grpo.
 
-| Service | Environment Variables |
-|---------|----------------------|
-| LiteLLM | `LITELLM_ENDPOINT`, `LITELLM_MASTER_KEY` |
+## Platform services
+
+| Service | How a notebook reaches it |
+|---|---|
+| LLM Gateway | `tk_llm`: `LLMClient()` to list, load and unload models; `get_openai_client()` for chat and embeddings |
 | Qdrant | `QDRANT_URL` |
 | Langfuse | `LANGFUSE_HOST`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` |
-| MLflow | `MLFLOW_TRACKING_URI`, `MLFLOW_AUTH_USERNAME`, `MLFLOW_AUTH_PASSWORD`, `MLFLOW_KEYCLOAK_TOKEN_URL`, `MLFLOW_KEYCLOAK_CLIENT_ID`, `MLFLOW_CLIENT_SECRET` |
-| PostgreSQL | `POSTGRES_HOST`, `POSTGRES_PORT`, `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` |
-| Valkey | `VALKEY_HOST`, `VALKEY_PORT` |
+| Thinkube Experiments (MLflow) | `MLFLOW_TRACKING_URI`; `thinkube_models` for the token and the model staging path |
+| PostgreSQL | `POSTGRES_*` |
+| Valkey | `VALKEY_HOST`, `VALKEY_PORT`, `VALKEY_PASSWORD` |
 | NATS | `NATS_URL` |
 
-## Implementation Rules
+The variables are injected by Thinkube Notebooks; a service that is not installed has no variables.
 
-1. **No TODO stubs in final code** - Every cell must execute
-2. **Use real services** - Connect to actual platform, not mocks
-3. **Show real outputs** - Results should be from actual execution
-4. **Document issues** - If something doesn't work, document why
+## Rules for changes
 
-## Key Libraries
-
-For `tk-jupyter-agent-dev`:
-- `langchain`, `langchain-openai`, `langchain-community`
-- `crewai`
-- `qdrant-client`
-- `langfuse`
-- `arxiv` (for paper fetching)
-- `openai` (LiteLLM is OpenAI-compatible)
-
-For `tk-jupyter-fine-tuning`:
-- `unsloth`
-- `peft`
-- `trl`
-- `mlflow`
-
-## Testing Notebooks
-
-To test, the notebooks need to run in JupyterHub:
-1. Open JupyterHub on the Thinkube cluster
-2. Select appropriate image (`tk-jupyter-agent-dev` or `tk-jupyter-fine-tuning`)
-3. Upload/clone this repository
-4. Run notebooks in order
-
-## Related Documentation
-
-- `/home/thinkube/thinkube-platform/thinkube-documentation/guides/thinkube-ai-lab-getting-started.md`
+1. Every cell must execute against the real services; no stubs, no mocks.
+2. Saved outputs are from real runs; rerun a notebook after changing it.
+3. Run notebooks over MCP when no browser is needed: `jupyter_use_notebook`, then `jupyter_execute_all_cells`, with paths relative to the notebooks folder, for example `examples/research-assistant/00-platform-validation.ipynb`.

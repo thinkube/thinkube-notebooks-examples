@@ -1,75 +1,47 @@
-# Thinkube AI Examples
+# Thinkube Notebooks Examples
 
-Working examples for building AI applications on the Thinkube platform.
+Working examples for building AI applications on the Thinkube platform. Each notebook runs against the services of your own cluster, and the outputs saved in them are from real runs.
 
 **License**: Apache License 2.0
 **Copyright**: 2025 Alejandro Martínez Corriá
 
-## Purpose
+## What is here
 
-This repository contains **one complete, working example**: an AI Research Lab Assistant that demonstrates the full Thinkube AI development lifecycle.
-
-## Structure
+Two examples. `research-assistant/` builds an assistant over a corpus of research papers in four notebooks, run in order. `zebra-grpo/` fine-tunes a model on rewards a program can check, registers it and serves it: the loop from a base model to one you serve yourself.
 
 ```
-thinkube-notebooks-examples/
-└── research-assistant/
-    ├── 00-platform-validation.ipynb  # Validate platform services
-    ├── 01-register-litellm.ipynb     # Register LLM models
-    ├── 02-langchain-rag.ipynb        # RAG pipeline for paper search
-    ├── 03-multi-agent.ipynb          # Multi-agent coordination
-    └── 04-fine-tuning.ipynb          # Domain-specific fine-tuning
+examples/
+├── research-assistant/
+│   ├── 00-platform-validation.ipynb  # Check the platform services the notebooks use
+│   ├── 01-register-litellm.ipynb     # Load a chat model and an embedding model through the LLM Gateway
+│   ├── 02-langchain-rag.ipynb        # Index arXiv papers in Qdrant and answer questions with sources
+│   └── 03-multi-agent.ipynb          # Two agents debate from the index; a judge decides
+└── zebra-grpo/
+    ├── zebra_grpo.ipynb              # Fine-tune with GRPO, register in Thinkube Experiments, serve
+    └── zebra_dataset.py
 ```
 
-## The Application: AI Research Lab Assistant
+## Kernels and services
 
-An AI assistant for managing ML/AI research papers that:
+| Notebook | Kernel | Services |
+|---|---|---|
+| 00-platform-validation | `agent-dev` | LLM Gateway, Qdrant, Langfuse, Thinkube Experiments (MLflow), PostgreSQL, Valkey, NATS; a service that is not installed is skipped |
+| 01-register-litellm | `agent-dev` | LLM Gateway, through `tk-llm` |
+| 02-langchain-rag | `agent-dev` | LLM Gateway, Qdrant, Langfuse, the arXiv API |
+| 03-multi-agent | `agent-dev` | LLM Gateway (a model with tool calling), Qdrant, Langfuse |
+| zebra-grpo | `fine-tuning`, one GPU with about 20 GB free | Thinkube Experiments, the LLM Gateway, Hugging Face for the benchmark dataset |
 
-- **Ingests ArXiv papers** - PDF loading and text extraction
-- **Semantic search** - Find papers by meaning, not just keywords
-- **Answers questions** - RAG-powered Q&A about research
-- **Summarizes papers** - Extract key findings
-- **Multi-agent coordination** - Paper Summarizer, Experiment Tracker, Insight Finder
-- **Links to MLflow** - Connect papers to experiments
+Install Qdrant and Langfuse before the research assistant; ask Claude Code: "install Qdrant and Langfuse".
 
-## Platform Services Used
+## Getting started
 
-All notebooks integrate with these Thinkube services:
+1. Open Thinkube Notebooks at `https://notebooks.<your domain>` and start a server; pick a GPU node for `zebra-grpo`.
+2. Open `examples/research-assistant/00-platform-validation.ipynb` with the `agent-dev` kernel.
+3. Run 00, 01, 02 and 03 in order; 01 leaves the models loaded for 02 and 03.
+4. Then open `examples/zebra-grpo/zebra_grpo.ipynb` with the `fine-tuning` kernel.
 
-| Service | Purpose |
-|---------|---------|
-| LiteLLM | Unified LLM gateway |
-| Qdrant | Vector database for RAG |
-| Langfuse | Observability and tracing |
-| MLflow | Experiment tracking |
-| PostgreSQL | Paper metadata storage |
-| Valkey | Caching |
-| NATS | Multi-agent messaging |
+Your copy in `notebooks/examples/` is made once, the first time your server starts, and is yours to change. A fresh copy of this repository is in `templates/examples/` every time the server starts; copy a notebook from there to take a newer version.
 
-## Prerequisites
+## Documentation
 
-- JupyterHub access on Thinkube platform
-- `tk-jupyter-agent-dev` image (for notebooks 00, 01, 02, 03)
-- `tk-jupyter-fine-tuning` image (for notebook 04)
-
-## Getting Started
-
-1. Open JupyterHub: `https://jupyter.{your-domain}`
-2. Select `tk-jupyter-agent-dev` image
-3. Navigate to `research-assistant/`
-4. Start with `00-platform-validation.ipynb` to verify services
-5. Work through notebooks in order (00 → 04)
-
-## Development Approach
-
-These notebooks are built using **documentation-driven development**:
-
-1. Each notebook contains working, tested code
-2. Code is validated against actual platform services
-3. Outputs and results are real, not mocked
-4. Issues encountered are documented
-
-## Related Documentation
-
-- [Implementation Plan](https://github.com/thinkube/thinkube-documentation/blob/main/IMPLEMENTATION_PLAN.md)
-- [Platform Services Integration](https://github.com/thinkube/thinkube-documentation/blob/main/guides/platform-services-integration.md)
+The Thinkube documentation, at `https://docs.<your domain>` on your cluster, covers these notebooks under Thinkube Models: *The example notebooks*, *Build a research assistant, end to end* and *Fine-tune on verifiable rewards, end to end*. Or ask Claude Code: "how do I run the research assistant notebooks?"
