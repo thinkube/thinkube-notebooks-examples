@@ -46,8 +46,8 @@ Your copy in `thinkube/notebooks/examples/` is made once, the first time your se
 
 The Thinkube documentation, at `https://docs.<your domain>` on your cluster, covers these notebooks under Thinkube Models:
 
-- [Thinkube Models](https://github.com/thinkube/thinkube.org/blob/main/modules/ROOT/pages/lifecycle/index.adoc), which lists the example notebooks
-- [Build a research assistant over your papers](https://github.com/thinkube/thinkube.org/blob/main/modules/ROOT/pages/playbooks/build-a-research-assistant-over-your-papers.adoc)
-- [Fine-tune a model on rewards a program checks](https://github.com/thinkube/thinkube.org/blob/main/modules/ROOT/pages/playbooks/fine-tune-on-rewards-a-program-checks.adoc)
+- [Thinkube Models](https://thinkube.github.io/thinkube.org/thinkube-docs/lifecycle/index.html), which lists the example notebooks
+- [Build a research assistant over your papers](https://thinkube.github.io/thinkube.org/thinkube-docs/playbooks/build-a-research-assistant-over-your-papers.html)
+- [Fine-tune a model on rewards a program checks](https://thinkube.github.io/thinkube.org/thinkube-docs/playbooks/fine-tune-on-rewards-a-program-checks.html)
 
 Or ask Claude Code: "how do I run the research assistant notebooks?"
