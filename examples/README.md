@@ -40,8 +40,14 @@ Install Qdrant and Langfuse before the research assistant; ask Claude Code: "ins
 3. Run 00, 01, 02 and 03 in order; 01 leaves the models loaded for 02 and 03.
 4. Then open `examples/zebra-grpo/zebra_grpo.ipynb` with the `fine-tuning` kernel.
 
-Your copy in `notebooks/examples/` is made once, the first time your server starts, and is yours to change. A fresh copy of this repository is in `templates/examples/` every time the server starts; copy a notebook from there to take a newer version.
+Your copy in `thinkube/notebooks/examples/` is made once, the first time your server starts, and is yours to change. A fresh copy of this repository is in `thinkube/templates/examples/` every time the server starts; copy a notebook from there to take a newer version.
 
 ## Documentation
 
-The Thinkube documentation, at `https://docs.<your domain>` on your cluster, covers these notebooks under Thinkube Models: *The example notebooks*, *Build a research assistant, end to end* and *Fine-tune on verifiable rewards, end to end*. Or ask Claude Code: "how do I run the research assistant notebooks?"
+The Thinkube documentation, at `https://docs.<your domain>` on your cluster, covers these notebooks under Thinkube Models:
+
+- [Thinkube Models](https://github.com/thinkube/thinkube.org/blob/main/modules/ROOT/pages/lifecycle/index.adoc), which lists the example notebooks
+- [Build a research assistant over your papers](https://github.com/thinkube/thinkube.org/blob/main/modules/ROOT/pages/playbooks/build-a-research-assistant-over-your-papers.adoc)
+- [Fine-tune a model on rewards a program checks](https://github.com/thinkube/thinkube.org/blob/main/modules/ROOT/pages/playbooks/fine-tune-on-rewards-a-program-checks.adoc)
+
+Or ask Claude Code: "how do I run the research assistant notebooks?"
