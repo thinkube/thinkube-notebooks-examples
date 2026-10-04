@@ -1,0 +1,47 @@
+# Jupyter Notebook
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local data
+*.csv
+*.parquet
+*.h5
+*.pkl
+*.joblib
+data/
+models/
+
+# Training outputs
+outputs/
+unsloth_compiled_cache/
+latex_cache/
+
+# Secrets
+.env
+.copied
+examples/catalan-reasoning/alia-math-test/
+
+# Local Claude Code and Tandem state
+.claude/
+.tandem/
