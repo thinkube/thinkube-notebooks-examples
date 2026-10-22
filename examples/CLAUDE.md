@@ -11,12 +11,9 @@ examples/
 │   ├── 01-load-models.ipynb          # Loads a chat and an embedding model through the LLM Gateway (tk-llm)
 │   ├── 02-langchain-rag.ipynb        # arXiv corpus -> chunks -> embeddings -> Qdrant collection rl_reasoning_papers
 │   └── 03-multi-agent.ipynb          # AG2 debate citing the Qdrant index; a judge decides
-└── zebra-grpo/
-    ├── zebra_grpo.ipynb              # GRPO fine-tune of unsloth/Qwen3.5-4B, registered in MLflow, served via the gateway
-    └── zebra_dataset.py
 ```
 
-Kernels: `agent-dev` for the research assistant, `fine-tuning` for zebra-grpo.
+Kernel: `agent-dev`.
 
 ## Platform services
 
