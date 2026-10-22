@@ -73,6 +73,5 @@ For `agent-dev` venv:
 - `openai` (LLM Gateway is OpenAI-compatible)
 
 For `fine-tuning` venv:
-- `unsloth`
 - `peft`, `trl`
 - `mlflow`
